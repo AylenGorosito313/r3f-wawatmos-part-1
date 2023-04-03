@@ -16,11 +16,16 @@ export const Background = () => {
         >
           <Gradient
             colorA={"#357ca1"}
-            colorB={"white"}
+            colorB={"#D9AFD9"}
+            colorC={"#9599E2"}
+            colorD={"#f4c4f3"}
             axes={"y"}
             start={0}
             end={-0.5}
           />
+       
+      
+          
         </LayerMaterial>
       </Sphere>
     </>

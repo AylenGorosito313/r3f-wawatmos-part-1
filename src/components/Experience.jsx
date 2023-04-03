@@ -1,10 +1,20 @@
-import { Float, PerspectiveCamera, useScroll } from "@react-three/drei";
+import {
+  Float,
+  PerspectiveCamera,
+  Sparkles,
+  SpotLight,
+  Stars,
+  Text,
+  useScroll,
+} from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Airplane } from "./Airplane";
 import { Background } from "./Background";
 import { Cloud } from "./Cloud";
+import { HouseModel } from "./Hoouse";
+import { MoonModel } from "./Moon";
 
 const LINE_NB_POINTS = 12000;
 
@@ -91,6 +101,7 @@ export const Experience = () => {
       {/* <OrbitControls enableZoom={false} /> */}
       <group ref={cameraGroup}>
         <Background />
+
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
         <group ref={airplane}>
           <Float floatIntensity={2} speed={2}>
@@ -102,6 +113,23 @@ export const Experience = () => {
           </Float>
         </group>
       </group>
+
+      {/* text */}
+      <group position={[-3, 0, -20]}>
+        {" "}
+        <Text
+          color="white"
+          anchorX={"left"}
+          anchorY="middle"
+          fontSize={0.22}
+          maxWidth={2.5}
+          font={"https://fonts.gstatic.com"}
+        >
+          Hi , I am Aylen Gorosito
+        </Text>
+      </group>
+
+      {/* text */}
 
       {/* LINE */}
       <group position-y={-2}>
@@ -116,7 +144,7 @@ export const Experience = () => {
               },
             ]}
           />
-          <meshStandardMaterial color={"white"} opacity={0.7} transparent />
+          <meshStandardMaterial color={"#ebd0f2"} opacity={0.7} transparent />
         </mesh>
       </group>
 
@@ -137,6 +165,81 @@ export const Experience = () => {
       />
       <Cloud opacity={0.7} scale={[0.5, 0.5, 0.5]} position={[-1, 1, -53]} />
       <Cloud opacity={0.3} scale={[0.8, 0.8, 0.8]} position={[0, 1, -100]} />
+
+      <Suspense>
+        <HouseModel scale={[1.2, 1.2, 1.2]} position={[-2, -1, -80]} />
+      </Suspense>
+      <Suspense>
+        <MoonModel   scale={[.2, .2, 1.2]}   position={[-20, 10, -210]} />
+      </Suspense>
+      <Sparkles
+        opacity={0.5}
+        speed={0.1}
+        width={"100%"}
+        depth={10.5}
+        scale={[5, 5, 5]}
+        count={5000}
+        size={0.5}
+        segments={200}
+        distance={450000}
+        radius={100}
+        position={[0, 1, -100]}
+      />
+
+      <Sparkles
+        opacity={2.5}
+        speed={0.1}
+        width={"100%"}
+        depth={10.5}
+        scale={[5, 5, 5]}
+        count={5000}
+        size={0.5}
+        segments={100}
+        distance={450000}
+        radius={100}
+        position={[-2, 1, -80]}
+      />
+
+      <Sparkles
+        opacity={2.5}
+        speed={0.1}
+        width={"100%"}
+        depth={10.5}
+        scale={[5, 5, 5]}
+        count={5000}
+        size={0.5}
+        segments={100}
+        distance={450000}
+        radius={500}
+        position={[0, 1, -20]}
+      />
+      <Sparkles
+        opacity={2.5}
+        speed={0.1}
+        width={"100%"}
+        depth={10.5}
+        scale={[5, 5, 5]}
+        count={5000}
+        size={0.5}
+        segments={100}
+        radius={500}
+        distance={450000}
+        position={[0, 1, -10]}
+      />
+
+      <Sparkles
+        opacity={2.5}
+        speed={0.1}
+        width={"100%"}
+        depth={10.5}
+        scale={[5, 5, 5]}
+        count={5000}
+        size={0.5}
+        segments={100}
+        radius={500}
+        distance={450000}
+        position={[0, 1, 0]}
+      />
     </>
   );
 };
