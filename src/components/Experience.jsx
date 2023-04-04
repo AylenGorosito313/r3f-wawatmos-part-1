@@ -1,6 +1,8 @@
 import {
   Float,
+  OrbitControls,
   PerspectiveCamera,
+  PointerLockControls,
   Sparkles,
   SpotLight,
   Stars,
@@ -15,6 +17,8 @@ import { Background } from "./Background";
 import { Cloud } from "./Cloud";
 import { HouseModel } from "./Hoouse";
 import { MoonModel } from "./Moon";
+import { MoonModelPoly } from "./MoonPoly";
+import { ModelFPS } from "./Fps_animated_carbine";
 
 const LINE_NB_POINTS = 12000;
 
@@ -95,16 +99,26 @@ export const Experience = () => {
   });
 
   const airplane = useRef();
+  const cameraRef = useRef();
 
+
+ 
   return (
     <>
       {/* <OrbitControls enableZoom={false} /> */}
       <group ref={cameraGroup}>
         <Background />
-
-        <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
+        {/* <OrbitControls /> */}
+        {/* <PerspectiveCamera position={[0, 0,4]} fov={30} makeDefault /> */}
+        <PerspectiveCamera ref={cameraRef} fov={150} makeDefault position={[0, 1.6, 0]} />
         <group ref={airplane}>
+          {/* <ModelFPS
+            rotation-y={Math.PI / 1}
+            scale={[0.5, 0.2, 0.2]}
+            position-y={-1}
+          /> */}
           <Float floatIntensity={2} speed={2}>
+        
             <Airplane
               rotation-y={Math.PI / 2}
               scale={[0.2, 0.2, 0.2]}
@@ -170,7 +184,7 @@ export const Experience = () => {
         <HouseModel scale={[1.2, 1.2, 1.2]} position={[-2, -1, -80]} />
       </Suspense>
       <Suspense>
-        <MoonModel   scale={[.2, .2, 1.2]}   position={[-20, 10, -210]} />
+        <MoonModelPoly scale={[0.2, 0.2, 0.2]} position={[-20, 10, -120]} />
       </Suspense>
       <Sparkles
         opacity={0.5}
